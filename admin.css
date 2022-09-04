@@ -1,0 +1,22 @@
+.re{
+    margin: 20px;
+    margin-bottom: 70px;
+    font-style: oblique;
+    color: yellowgreen;
+    text-align: center;
+}
+.do{
+    margin: 20px;
+    font-style: oblique;
+    text-align: center;
+
+    color: chocolate;
+}
+
+.i{
+    height: 200px;
+    width: 200px;
+}
+form{
+    text-align: center;
+}

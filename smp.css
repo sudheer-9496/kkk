@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
+
+.body {
+    background-color: pink;
+    background-size: cover;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #c4c3ca;
+    overflow-x: hidden;
+}
+#rnav{
+    background-image: url("https://png.pngtree.com/thumb_back/fw800/back_our/20190619/ourmid/pngtree-geometric-gradient-creative-blood-donation-poster-background-material-image_134137.jpg");
+}
+
+
+.main_nav ul li {
+    float: left;
+    margin-left:29px;
+    position: relative;
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    overflow: hidden;
+}
+
+
+
+.main_nav ul li a:before {
+    content: "";
+    position: absolute;
+    left: 100%;
+    top: 0;
+    height: 2px;
+    width: 100%;
+    background: red;
+    transition: all 0.3s ease-in-out;
+}
+
+.main_nav ul li a:after {
+    content: "";
+    position: absolute;
+    right: 100%;
+    bottom: 0;
+    height: 2px;
+    width: 110%;
+    background: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.main_nav ul li:hover a:before {
+    left: 0;
+}
+
+.main_nav ul li:hover a:after {
+    right: 0;
+}
+
+
+
+
+
+.card {
+  position: relative;
+  width: 680px;
+  max-width: 200%;
+  height: 500px;
+   background-color:transparent;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 500px;
+  padding: 20px;
+  animation: mymove 3s 1;
+}
+
+@keyframes mymove {
+    from {
+        right: 400px;
+    }
+
+    to {
+        right: 0px;
+    }
+}
+
+
+
+
+
+h4 {
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: "Josefin Sans", sans-serif;
+  background: linear-gradient(to right, white 10%, #25abe8 50%);
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 1.5s linear infinite;
+  display: inline-block;
+}
+
+@keyframes textclip {
+  to {
+      background-position: 200% center;
+  }
+}
+.b{
+margin-left: 280px;
+width: 100px;
+}
+.form-group {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.form-style {
+  padding: 13px 20px;
+  padding-left: 55px;
+  height: 48px;
+  width: 100%;
+  font-weight: 600;
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.5px;
+  outline: none;
+  color: #17bfe9;
+  background-color: #f05e5e;
+  border: none;
+  transition: all 200ms linear;
+  box-shadow: 0 4px 8px 0 rgba(21, 21, 21, .2);
+}
+
+.form-style:focus,
+.form-style:active {
+  border: none;
+  outline: none;
+  box-shadow: 0 4px 8px 0 rgba(21, 21, 21, .2);
+}
+
+.input-icon {
+  position: absolute;
+  top: 0;
+  left: 18px;
+  height: 48px;
+  font-size: 24px;
+  line-height: 48px;
+  text-align: left;
+  color:#c4c3ca;
+  transition: all 200ms linear;
+}
+
+.form-group input:-ms-input-placeholder {
+  color:  #c4c3ca;
+  opacity: 0.7;
+  transition: all 200ms linear;
+}
+
+.form-group input::-moz-placeholder {
+  color: #c4c3ca;
+  opacity: 0.7;
+  transition: all 200ms linear;
+}
+
+.form-group input:-moz-placeholder {
+  color:  #c4c3ca;
+  opacity: 1;
+  transition: all 200ms linear;
+}
+
+.form-group input::-webkit-input-placeholder {
+  color:  white;
+  opacity: 1;
+  transition: all 200ms linear;
+}
+
+.form-group input:focus:-ms-input-placeholder {
+  opacity: 0;
+  transition: all 200ms linear;
+}
+
+.form-group input:focus::-moz-placeholder {
+  opacity: 0;
+  transition: all 200ms linear;
+}
+
+.form-group input:focus:-moz-placeholder {
+  opacity: 0;
+  transition: all 200ms linear;
+}
+
+.form-group input:focus::-webkit-input-placeholder {
+  opacity: 0;
+  transition: all 200ms linear;
+}
