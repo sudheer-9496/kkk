@@ -1,0 +1,360 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="css/admin.css">
+        <!--<script src="js/notification.js"></script>-->
+    </head>
+    <body>
+        <div class="d-flex flex-row">
+          <div class=" col-5 d-flex flex-column">
+          <h1 class="re" > Request list</h1> 
+          
+          <button type="submit" id="getrData" class="btn btn-primary col-12 b">Search data</button>
+        <table class="table table-striped col-12" id='dataTb2'>
+          <thead>
+            <tr>
+              <th scope="col">S.No</th>
+              <th scope="col">Name</th>
+              <th scope="col">Age</th>
+              <th scope="col">BloodGroup</th>
+              <th scope="col">Phone No</th>
+              <td>
+                  <input type="checkbox" id='bike'>
+              </td>
+            </tr>
+          </thead>
+          </table>
+          </div>
+          <div class=" col-2 d-flex flex-column">
+
+          <img class="i" src="https://i.pinimg.com/564x/5d/94/ff/5d94fff22565a8f3722fc5c0a9a55c45.jpg">
+                </div>
+          <div class=" col-5 d-flex flex-column">
+            
+       <h1 class="do"> Donors list</h1>
+       <form >
+        <label for="cars">Choose the blood group:</label>
+        <select name="BloodGroup" id="BLOOD">
+          <option>A+</option>
+          <option>A-</option>
+          <option>B+</option>
+          <option>B-</option>
+          <option>O+</option>
+          <option>O-</option>
+          <option>AB+</option>
+          <option>AB-</option>
+          <option>All</option>
+        </select>
+        <br>
+      </form>
+      <button type="submit"   class="btn btn-primary col-2" id="Sub">Sub</button>
+      <button type="submit"   class="btn btn-primary col-2" onclick="sendNotification()">Send</button>
+      <input type="text" id="token" placeholder="Enter user">
+      <input type="text" id="title" placeholder="Enter user">
+      <input type="text" id="msg" placeholder="Enter user">
+        <button type="submit" id="getData" class="btn btn-primary col-12">Search data</button>
+        <table class="table table-striped col-12" id='dataTbl'>
+          <thead>
+            <tr>
+              <th scope="col">S.No</th>
+              <th scope="col">Name</th>
+              <th scope="col">Age</th>
+              <th scope="col">BloodGroup</th>
+              <th scope="col">Phone No</th>
+            </tr>
+          </thead>
+      
+       </div>
+       </div>
+       
+    </body>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
+      import { getDatabase, set, ref ,push, child, onValue} from "https://www.gstatic.com/firebasejs/9.9.1/firebase-database.js";
+    
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyAdO1240EGQj0s2HgEuLulySHlBBzm2fcc",
+        authDomain: "g-b-d2.firebaseapp.com",
+        databaseURL: "https://g-b-d2-default-rtdb.firebaseio.com",
+        projectId: "g-b-d2",
+        storageBucket: "g-b-d2.appspot.com",
+        messagingSenderId: "852601687667",
+        appId: "1:852601687667:web:8444d014a7c78ca0b3a406",
+        measurementId: "G-NYJPSEE4PZ"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      
+      // Get a reference to the database service
+      const database = getDatabase(app);
+    
+      getrData.addEventListener('click',(e) => {
+      
+        $('#dataTb2 td').remove();
+        var rowNum = 0; 
+     
+        const dbRef = ref(database, 'Requestlist/');
+    
+        onValue(dbRef, (snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+          const childKey = childSnapshot.key;
+          const childData = childSnapshot.val();
+          // ...
+          rowNum += 1; 
+          var row = "<tr><td>" + rowNum + "</td><td>" + childData.name + "</td><td>" + childData.Age + "</td><td>" + childData.bloodgroup + "</td><td>" + childData.phoneno + "</td></tr>"
+          $(row).appendTo('#dataTb2');
+          
+          });
+        }, {
+           onlyOnce: true
+        });
+      
+    });
+  
+
+
+
+
+      // read data
+      getData.addEventListener('click',(e) => {
+        var bloodgroup = document.getElementById('BLOOD').value;
+
+    
+        $('#dataTbl td').remove();
+        var rowNum = 0; 
+        if(bloodgroup=='A+'){
+        const dbRef = ref(database, 'A+users/');
+    
+        onValue(dbRef, (snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+          const childKey = childSnapshot.key;
+          const childData = childSnapshot.val();
+          // ...
+          rowNum += 1; 
+          var row = "<tr><td>" + rowNum + "</td><td>" + childData.username + "</td><td>" + childData.age + "</td><td>" + childData.bloodgroup + "</td><td>" + childData.phoneno + "</td></tr>" 
+          $(row).appendTo('#dataTbl');
+          
+          });
+        }, {
+           onlyOnce: true
+        });
+      }
+      else if(bloodgroup=='A-'){
+        const dbRef = ref(database, 'A-users/');
+    
+        onValue(dbRef, (snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+          const childKey = childSnapshot.key;
+          const childData = childSnapshot.val();
+          // ...
+          rowNum += 1; 
+          var row = "<tr><td>" + rowNum + "</td><td>" + childData.username + "</td><td>" + childData.age + "</td><td>" + childData.bloodgroup + "</td><td>" + childData.phoneno + "</td></tr>" 
+          $(row).appendTo('#dataTbl');
+          
+          });
+        }, {
+           onlyOnce: true
+        });
+      }
+      else if(bloodgroup=='B+'){
+        const dbRef = ref(database, 'B+users/');
+    
+        onValue(dbRef, (snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+          const childKey = childSnapshot.key;
+          const childData = childSnapshot.val();
+          // ...
+          rowNum += 1; 
+          var row = "<tr><td>" + rowNum + "</td><td>" + childData.username + "</td><td>" + childData.age + "</td><td>" + childData.bloodgroup + "</td><td>" + childData.phoneno+ "</td></tr>" 
+    
+          $(row).appendTo('#dataTbl');
+          
+          });
+        }, {
+           onlyOnce: true
+        });
+      }
+      else if(bloodgroup=='B-'){
+        const dbRef = ref(database, 'B-users/');
+    
+        onValue(dbRef, (snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+          const childKey = childSnapshot.key;
+          const childData = childSnapshot.val();
+          // ...
+          rowNum += 1; 
+          var row = "<tr><td>" + rowNum + "</td><td>" + childData.username + "</td><td>" + childData.age + "</td><td>" + childData.bloodgroup + "</td><td>" + childData.phoneno + "</td></tr>" 
+    
+          $(row).appendTo('#dataTbl');
+          
+          });
+        }, {
+           onlyOnce: true
+        });
+      }
+      else if(bloodgroup=='AB-'){
+        const dbRef = ref(database, 'AB-users/');
+    
+        onValue(dbRef, (snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+          const childKey = childSnapshot.key;
+          const childData = childSnapshot.val();
+          // ...
+          rowNum += 1; 
+          var row = "<tr><td>" + rowNum + "</td><td>" + childData.username + "</td><td>" + childData.age + "</td><td>" + childData.bloodgroup + "</td><td>" + childData.phoneno + "</td></tr>" 
+    
+          $(row).appendTo('#dataTbl');
+          
+          });
+        }, {
+           onlyOnce: true
+        });
+      }
+      else if(bloodgroup=='AB+'){
+        const dbRef = ref(database, 'AB+users/');
+    
+        onValue(dbRef, (snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+          const childKey = childSnapshot.key;
+          const childData = childSnapshot.val();
+          // ...
+          rowNum += 1; 
+          var row = "<tr><td>" + rowNum + "</td><td>" + childData.username + "</td><td>" + childData.age + "</td><td>" + childData.bloodgroup + "</td><td>" + childData.phoneno + "</td></tr>" 
+    
+          $(row).appendTo('#dataTbl');
+          
+          });
+        }, {
+           onlyOnce: true
+        });
+      }
+      else if(bloodgroup=='O-'){
+        const dbRef = ref(database, 'O-users/');
+    
+        onValue(dbRef, (snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+          const childKey = childSnapshot.key;
+          const childData = childSnapshot.val();
+          // ...
+          rowNum += 1; 
+          var row = "<tr><td>" + rowNum + "</td><td>" + childData.username + "</td><td>" + childData.age + "</td><td>" + childData.bloodgroup + "</td><td>" + childData.phoneno + "</td></tr>"
+    
+          $(row).appendTo('#dataTbl');
+          
+          });
+        }, {
+           onlyOnce: true
+        });
+      }
+      else if(bloodgroup=='All'){
+        const dbRef = ref(database, 'B+users/'|| database, 'O+users/','O-users/','B-users/'&'AB-users/'&'AB+users/'&'A-users/'&'A+users/');
+    
+        onValue(dbRef, (snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+          const childKey = childSnapshot.key;
+          const childData = childSnapshot.val();
+          // ...
+          rowNum += 1; 
+          var row = "<tr><td>" + rowNum + "</td><td>" + childData.username + "</td><td>" + childData.age + "</td><td>" + childData.bloodgroup + "</td><td>" + childData.phoneno+ "</td></tr>" 
+    
+          $(row).appendTo('#dataTbl');
+          
+          });
+        }, {
+           onlyOnce: true
+        });
+      }
+      else if(bloodgroup=='O+'){
+        const dbRef = ref(database, 'O+users/');
+    
+        onValue(dbRef, (snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+          const childKey = childSnapshot.key;
+          const childData = childSnapshot.val();
+          // ...
+          rowNum += 1; 
+          var row = "<tr><td>" + rowNum + "</td><td>" + childData.username + "</td><td>" + childData.age + "</td><td>" + childData.bloodgroup + "</td><td>" + childData.phoneno + "</td></tr>" 
+    
+          $(row).appendTo('#dataTbl');
+          
+          });
+        }, {
+           onlyOnce: true
+        });
+      }
+
+
+        Sub.addEventListener('click',(e) => {
+    Notification.requestPermission().then(Permission=>{
+        console.log(Permission)
+        if(Permission == "granted"){
+            messaging.getToken({vapidKey:"BGaGMET4310T6sgw-Xq3Ic9qHp11_s5_sZ3OBAlEreBr7w1CEZVkaBk3OWRA4KFg514bI4D7Sf9RlPRXlXZz2Wg"}).then(currentToken=>{
+                console.log(currentToken)
+                document.getElementById('token').innerHTML =
+                currentToken
+            })
+
+        }
+    })
+  });
+
+  messaging.onMessage(res=>{
+    console.log(res)
+  })
+
+
+  function sendNotification(){
+    const token =document.getElementById('token').value
+    const title =document.getElementById('title').value
+    const msg =document.getElementById('msg').value
+
+    let body ={
+        to: token,
+        notification:{
+            title:title,
+            body:msg,
+            icon:"",
+            click_action:"https://g-b-d2.web.app/admin.html"
+        }
+        
+
+    }
+    let Option={
+        method:"POST",
+        headers:new Headers({
+            Authorization: "key=AAAAxoMFTnM:APA91bGU8hCwo8tH7taK3Cv4ingK8hUv8Pl9l2Xvi1raHCsHVdu-FE94cYvqDSptC65WATKHq5KftGrGuPQu3BJz8PR71CWsHc1iq7-3g2FEiqJly1lUSbfSt9RxE_uMSyI1n-LxK_mc",
+            "Content-type":"application/json"
+
+        }),
+        body:JSON.stringify(body)
+    }
+
+    fetch("https://g-b-d2.googleapis.com/g-b-d2/send",Option).then(res=>{
+        console.log(res)
+        console.log('SENT')
+    }).catch(e=>console.log(e))
+
+    console.log(body)
+
+  }
+    
+      });
+    </script>
+    <html>
